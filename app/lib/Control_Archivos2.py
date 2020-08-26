@@ -29,7 +29,8 @@ N_A_Numero_Reinicios    ='/home/pi/Firmware/db/Log/Numero_Reinicios.txt'
 
 #-------        Config     ----------
 
-N_A_Direccion_Torniqute  ='/home/pi/Firmware/db/Config/Direccion_Torniquete.txt'
+N_A_Direccion_Torniqute ='/home/pi/Firmware/db/Config/Direccion_Torniquete.txt'
+N_A_Tiempo_Torniqute    ='/home/pi/Firmware/db/Config/Tiempo_Torniquete.txt'
 
 #-------        Actualizador     ----------
 N_A_Procedimiento       ='/home/pi/Actualizador/db/Respuesta_Peticion_Firmware.txt'
@@ -111,6 +112,7 @@ def Get_archivo(a):
     global N_A_Pines_Usados
     global N_A_Estados_Servidor
     global N_A_Nommbre_Firmware
+    global N_A_Tiempo_Torniqute
 
     arch = ''
 
@@ -144,6 +146,7 @@ def Get_archivo(a):
     if a==27:	arch	=       N_A_Pines_Usados
     if a==28:	arch	=       N_A_Estados_Servidor
     if a==29:	arch	=       N_A_Nommbre_Firmware
+    if a==30:	arch	=       N_A_Tiempo_Torniqute
     
     
     return arch
@@ -152,6 +155,7 @@ def Get_archivo(a):
 def Borrar_Archivo(a):
 
 	arch = Get_archivo(a)
+	#print arch
 	archivo = open(arch, "w")
 	archivo.write("")
 	archivo.close()

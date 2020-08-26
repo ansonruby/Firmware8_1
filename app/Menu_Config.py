@@ -108,6 +108,9 @@ MDisxip  = 95
 MIni_y   = 120
 MDisyip  = 60
 
+
+Tiempo_Torniquete = int (Leer_Archivo(30))
+
 #-----------------------------------
 #--------       funciones       ----
 #-----------------------------------
@@ -248,7 +251,27 @@ def Modificar_Archivo(a):
 
    
         #return mensaje 
+def clickbut_Tiempo(number):
+        global Tiempo_Torniquete
+        if number == '◄':
+                Tiempo_Torniquete =Tiempo_Torniquete-1
+                if Tiempo_Torniquete <= 1:
+                        Tiempo_Torniquete =1
 
+        else:
+                Tiempo_Torniquete =Tiempo_Torniquete+1
+                if Tiempo_Torniquete >= 20:
+                        Tiempo_Torniquete =20
+
+        #operator=operator+str(number)
+        #textin.set(operator)
+        #P_C_Tiempo_Torniquete.set("2")
+        texto = StringVar()
+        texto.set(str(Tiempo_Torniquete))
+        P_C_Tiempo_Torniquete.config(textvariable=texto)
+        #Tiempo Torniquete
+        Borrar(30)      #Esatado chicharra
+        Escrivir_Estados(str(Tiempo_Torniquete),30)
 
 def clickbut(number):   #lambda:clickbut(1)
 
@@ -869,6 +892,15 @@ def Torniquete():
         P_C_Salir_Izquierda.place(x=Ini_x+(Disx*0)+25, y=Ini_y+(Disy*0)-60) 
         P_C_Salir_Derecha.place(x=Ini_x+(Disx*0)+25, y=Ini_y+(Disy*1)-10)
         P_C_Aceptar_Tor.place(x=Ini_x, y=Ini_y+330)
+        P_C_CTiempo_Torniquete.place(bordermode=OUTSIDE, height=20, width=150, x= Ini_x+(Disx*1)-10, y= Ini_y+(Disy*3)-40)
+        texto = StringVar()
+        texto.set(str(Tiempo_Torniquete))
+        P_C_Tiempo_Torniquete.config(textvariable=texto)
+
+        P_C_Tiempo_Torniquete.place(bordermode=OUTSIDE, height=20, width=150, x= Ini_x+(Disx*1)-10, y= Ini_y+(Disy*4)-40)
+        P_C_Tiempo_Torniquete_incremento.place(x=Ini_x+(Disx*2)+15, y=Ini_y+(Disy*4)-60)
+        P_C_Tiempo_Torniquete_decremento.place(x=Ini_x+(Disx*0)+25, y=Ini_y+(Disy*4)-60)
+        
         
         #Botones torniquete
 
@@ -879,6 +911,10 @@ def No_ver_Torniquete():
         P_C_Salir_Izquierda.place_forget()
         P_C_Salir_Derecha.place_forget()
         P_C_Aceptar_Tor.place_forget()
+        P_C_CTiempo_Torniquete.place_forget()
+        P_C_Tiempo_Torniquete.place_forget()
+        P_C_Tiempo_Torniquete_incremento.place_forget()
+        P_C_Tiempo_Torniquete_decremento.place_forget()
 
 def Tor_Derecha():
         Borrar(13)
@@ -912,6 +948,9 @@ def Valores_Fabrica():
         #Torniquete
         Borrar(13)      #Direcion Torniquete
         Escrivir_Estados('D',13)
+        #Tiempo Torniquete
+        Borrar(30)      #Esatado chicharra
+        Escrivir_Estados('1',30)
         
         #Escrivir_Estados(Estados,3)
 
@@ -1276,6 +1315,10 @@ P_C_Config_Torniquete = Label(tk, font='Arial', bg='Dark gray', text="Configurar
 P_C_Salir_Izquierda = Button(tk,padx=DX_b-70,pady=DY_b,bd=BD,command=Tor_Izquierda,text="Salir por la Izquierda",font=Fuente)
 P_C_Salir_Derecha = Button(tk,padx=DX_b-66,pady=DY_b,bd=BD,command=Tor_Derecha,text="Salir por la Derecha",font=Fuente)
 P_C_Aceptar_Tor = Button(tk,padx=DX,pady=DY-10,bd=BD,command=Aceptar_reboot,text="Aceptar",font=Fuente)
+P_C_CTiempo_Torniquete = Label(tk, font='Arial', bg='Dark gray', text="Tiempo Relevador")
+P_C_Tiempo_Torniquete = Label(tk, font=Fuenteip, bg='Dark gray', text="1")
+P_C_Tiempo_Torniquete_incremento=Button(tk,padx=DX-6,pady=DY,bd=BD,bg='white',command=lambda:clickbut_Tiempo('►'),text='►',font=Fuenteip)
+P_C_Tiempo_Torniquete_decremento=Button(tk,padx=DX-6,pady=DY,bd=BD,bg='white',command=lambda:clickbut_Tiempo('◄'),text='◄',font=Fuenteip)
 
 #R_but0=Button(tk,padx=DX,pady=DY,bd=BD,bg='white',command=lambda:clickbut('0'),text='0',font=Fuente)
 #R_butp=Button(tk,padx=DX+3,pady=DY,bd=BD,bg='white',command=lambda:clickbut('.'),text='.',font=Fuente)
