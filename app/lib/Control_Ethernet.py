@@ -8,7 +8,7 @@ import Control_Archivos2  as Ca
 Generar		         = Ca.Generar_ID_Tarjeta
 
 #local prueba equipo
-CE_V=0   # 0: servidor de prueba 1: las direciones del aplicativo
+CE_V=1   # 0: servidor de prueba 1: las direciones del aplicativo
 CE_url = "http:+++++++"
 
 #------------------------------------------------
@@ -17,15 +17,14 @@ CE_url = "http:+++++++"
 
 IP_servidorP    = 'http://18.237.109.221'                # Pruebas
 #IP_servidorP    = 'http://192.168.0.4'                # Pruebas
-IP_servidor     = 'http://34.210.5.192'                 # Servidor
+IP_servidor     = 'http://34.220.121.133'                 # Servidor
 
 #MAC_DIRC        = 'cat /sys/class/net/eth0/address'
 MAC_DIRC        = 'cat /sys/class/net/wlan0/address'
 MAC             = commands.getoutput(MAC_DIRC)
 MAC             = MAC.replace(":","")
 ID_Tarjeta      = Generar(MAC)                             # ID
-#ID_Tarjeta      = '23'  #'19' #ID de prueba #ID_Tarjeta      = 'AABA01092019b827eb08200a000001'
-ID_Tarjeta      = 'ABDB12022020b827eb1e9142000028'
+#ID_Tarjeta      = '23'  #'19' #ID de prueba #ID_Tarjeta      = ''
 #------		Directorio
 CE_rl =[        "/api/access/keyboard_access",      # Enviar Teclado
                 "/api/access/grant",                # Enviar QR
